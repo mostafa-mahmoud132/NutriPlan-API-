@@ -1,0 +1,6 @@
+.loading {
+  display:none
+}
+.space-y-4 > div{
+  overflow: hidden;
+}
