@@ -18,7 +18,7 @@ import {
   renderFoodLog,
   renderWeeklyStats,
   renderQuickActions
-} from './modules/foodlog.js';
+} from './modules/foodLog.js';
 
 import {
   SearchName,
@@ -37,7 +37,6 @@ import {
   nameCatg
 } from './modules/meals.js';
 
-// --- global selections ---
 let searchyVal = document.querySelector("#search-input");
 let tooggleList = document.getElementById("list-view-btn");
 let tooggleGrid = document.querySelector("#grid-view-btn");
@@ -52,11 +51,9 @@ let NavLinks = document.querySelectorAll(".nav-link");
 let inputScanner = document.getElementById("product-search-input");
 let btnsearch = document.getElementById("search-product-btn");
 let lookupBtn = document.getElementById("lookup-barcode-btn");
-let barcode = document.getElementById("barcode-inpu-t"); 
-let probtn = document.querySelectorAll("button[data-grade]"); 
+let barcode = document.getElementById("barcode-inpu-t");
+let probtn = document.querySelectorAll("button[data-grade]");
 
-
-// View Toggles
 if (tooggleGrid) tooggleGrid.addEventListener("click", gridViwe);
 if (tooggleList) tooggleList.addEventListener("click", ListViwe);
 
@@ -71,7 +68,6 @@ if (tooggle) {
   });
 }
 
-// Sidebar
 if (btnSaidBar) {
   btnSaidBar.addEventListener("click", function (e) {
     e.stopPropagation();
@@ -98,7 +94,6 @@ if (SaidBar) {
   });
 }
 
-// Navigation
 NavLinks.forEach((link) => {
   const target = link.dataset.target;
   link.setAttribute("data-target", link.textContent.trim().toLowerCase());
@@ -148,14 +143,12 @@ NavLinks.forEach((link) => {
   });
 });
 
-// Search Logic (Meals)
 if (searchyVal) {
   searchyVal.addEventListener("input", function () {
     SearchByName(searchyVal.value.toLowerCase());
   });
 }
 
-// Search Logic (Products)
 if (btnsearch && inputScanner) {
   btnsearch.addEventListener("click", () => {
     let inputValue = inputScanner.value.trim();
@@ -163,7 +156,6 @@ if (btnsearch && inputScanner) {
   });
 }
 
-// Barcode Lookup
 if (lookupBtn && barcode) {
   lookupBtn.addEventListener("click", () => {
     getByQrCode(barcode.value);

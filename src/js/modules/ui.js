@@ -1,9 +1,8 @@
 
-// UI Handling Functions
-
 export function toggleSidebar(open) {
   const sidebar = document.getElementById("sidebar");
-  let isSidebarOpen = open; 
+  let isSidebarOpen = open;
+
   if (sidebar) {
     sidebar.style.transform = open
       ? "translate(0px, 10px)"
@@ -57,15 +56,13 @@ export function gridViwe() {
   recipeCards.forEach((card) => {
     card.style.cssText = `
     display: flex ;
-   flex-direction: column;
+    flex-direction: column;
     width: 100% ;
     display: flex;
   
     `;
-    const img = document.querySelector(".recipe-card img"); 
 
     const imgInCard = card.querySelector("img");
-
     const spans = card.querySelectorAll(".absolute.flex.gap-2 span");
 
     spans.forEach((span) => {
@@ -109,7 +106,6 @@ export function showSuccessModal(item) {
     <div id="success-modal"  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-4/5 mx-4 text-center transform scale-95 transition-transform duration-300">
             <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <!-- Image Check: Prefer item.image, fallback to thumbnail or placeholder -->
                 <img src="${item.image || item.thumbnail || 'https://via.placeholder.com/150'}" class="w-full h-full object-cover rounded-full opacity-80" style="display: ${item.image || item.thumbnail ? 'block' : 'none'};">
                 <i class="fa-solid fa-check text-4xl text-green-500 absolute" style="display: ${item.image || item.thumbnail ? 'none' : 'block'};"></i>
             </div>
@@ -130,7 +126,7 @@ export function showSuccessModal(item) {
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 
   const modal = document.getElementById("success-modal");
-  if (!modal) return; 
+  if (!modal) return;
   const content = modal.querySelector("div");
 
   requestAnimationFrame(() => {
@@ -153,7 +149,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
 
   return `
     <div id="meal-details-content" class="max-w-7xl mx-auto">
-          <!-- Back Button -->
           <button
             id="back-to-meals-btn"
             class="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium mb-6 transition-colors"
@@ -164,7 +159,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
             <br>
           </button>
 
-          <!-- Hero Section -->
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
             <div class="relative h-80 md:h-96">
               <img
@@ -211,7 +205,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div class="flex flex-wrap gap-3 mb-8">
             <button
               id="log-meal-btn"
@@ -225,11 +218,8 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
             </button>
           </div>
 
-          <!-- Main Content Grid -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column - Ingredients & Instructions -->
             <div class="lg:col-span-2 space-y-8">
-              <!-- Ingredients -->
               <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h2
                   class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"
@@ -262,7 +252,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
               </div>
 
 
-              <!-- Instructions -->
               <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h2
                   class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"
@@ -279,7 +268,7 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
                     <div
                       class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0"
                     >
-                     ${1 + index}
+                      ${1 + index}
                     </div>
                     <p class="text-gray-700 leading-relaxed pt-2">
                       ${step}
@@ -291,7 +280,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
                 </div>
               </div>
 
-              <!-- Video Section -->
               <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h2
                   class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"
@@ -314,10 +302,7 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
               </div>
             </div>
 
-            <!-- Right Column - Nutrition -->
-          
             <div class="space-y-6">
-              <!-- Nutrition Facts -->
               <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
                 <h2
                   class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2"
@@ -330,7 +315,6 @@ export function renderMealDetails(meal, nutrition = { perServing: {}, totals: {}
                     <div class="flex flex-col items-center justify-center py-12 text-center">
                       <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 relative">
                         <i class="fa-solid fa-calculator text-2xl text-emerald-500 animate-pulse"></i>
-                         <!-- Spinner overlay or just pulse -->
                          <div class="absolute inset-0 rounded-2xl border-2 border-emerald-100 animate-ping opacity-20"></div>
                       </div>
                       <h3 class="text-lg font-bold text-gray-900 mb-1">Calculating Nutrition</h3>

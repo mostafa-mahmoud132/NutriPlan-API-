@@ -4,7 +4,6 @@ import { renderMealDetails } from './ui.js';
 import { logMealOrProduct } from './foodLog.js';
 import { getTodayDateKey } from './utils.js';
 
-// DOM Selectors
 function getRecipesGrid() { return document.querySelector("#recipes-grid"); }
 function getRecipesCount() { return document.querySelector("#recipes-count"); }
 function getLoading() { return document.querySelector("#app-loading-overlay"); }
@@ -26,7 +25,7 @@ export function nameCatg() {
 
 export function getRandomMeals() {
     const loading = getLoading();
-    if (loading) loading.style.display = "flex"; 
+    if (loading) loading.style.display = "flex";
 
     fetchAPI("/meals/random?count=25")
         .then((data) => {
@@ -55,7 +54,6 @@ export function getRandomMealsareas() {
     fetchAPI("/meals/areas").then((data) => DisplayAllMealsareas(data.results));
 }
 
-// Show All Categories (The colorful cards at top of recipes)
 export function showCategoriesAll(AllCat) {
     const categoryStyles = {
         Beef: { bg: "from-red-50 to-rose-50", border: "border-red-200 hover:border-red-400", iconBg: "from-red-400 to-rose-500", icon: "fa-drumstick-bite" },
@@ -75,7 +73,7 @@ export function showCategoriesAll(AllCat) {
     let categoriesHTML = "";
 
     [...AllCat].slice(0, 12).forEach((cat) => {
-        let style = categoryStyles[cat.name] || categoryStyles.Beef; // fallback
+        let style = categoryStyles[cat.name] || categoryStyles.Beef;
         categoriesHTML += `
             <div data-category="${cat.name}" class="category-card bg-gradient-to-br ${style.bg} rounded-xl p-4 border ${style.border} hover:shadow-lg cursor-pointer transition-all group">
                 <div class="flex items-center gap-3">
@@ -98,7 +96,6 @@ export function showCategoriesAll(AllCat) {
     });
 }
 
-// Show All Country/Area Buttons
 export function DisplayAllMealsareas(areas) {
     const loading = getLoading();
     if (loading) loading.style.display = "flex";
@@ -140,7 +137,6 @@ export function DisplayAllMealsareas(areas) {
     }
 }
 
-// Show All Items (Recipes)
 export function displayCategories(cards) {
     const recipesGrid = getRecipesGrid();
     const recipesCont = getRecipesCount();
@@ -156,7 +152,6 @@ export function displayCategories(cards) {
             </div>
         </div>`;
         }
-        
         return;
     }
 
@@ -277,7 +272,7 @@ function handleMealSelection(meal) {
         })
         .catch((err) => {
             console.error("Nutrition Error:", err);
-            enableLogButton(false); 
+            enableLogButton(false);
         });
 }
 
@@ -295,7 +290,6 @@ function injectMealDetails(html) {
         }
     }
 
-    
     document.querySelectorAll('#main-content > section').forEach(sec => {
         if (sec.id !== 'meal-details-section') sec.classList.add('hidden');
     });
@@ -309,7 +303,6 @@ function injectMealDetails(html) {
 }
 
 function attachDetailsListeners() {
-    
     const backBtn = document.getElementById("back-to-meals-btn");
     if (backBtn) {
         backBtn.addEventListener("click", () => {
@@ -347,7 +340,6 @@ export function openLogMealModal(meal) {
     const modalHTML = `
     <div id="log-meal-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300" id="log-meal-content">
-            <!-- Header -->
             <div class="p-6 border-b border-gray-100 flex items-center gap-4">
                 <img src="${meal.thumbnail}" alt="${meal.name}" class="w-16 h-16 rounded-xl object-cover shadow-sm">
                 <div>
@@ -356,9 +348,7 @@ export function openLogMealModal(meal) {
                 </div>
             </div>
 
-            <!-- Body -->
             <div class="p-6 space-y-6">
-                <!-- Servings Control -->
                 <div id="servings-control">
                     <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Servings</label>
                     <div class="flex items-center gap-3">
@@ -372,7 +362,6 @@ export function openLogMealModal(meal) {
                     </div>
                 </div>
 
-                <!-- Nutrition Info Box -->
                 <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100">
                     <p class="text-xs text-gray-500 mb-3 font-medium">Estimated nutrition per serving:</p>
                     <div class="grid grid-cols-4 gap-2 text-center">
@@ -384,12 +373,10 @@ export function openLogMealModal(meal) {
                             <p class="text-lg font-bold text-blue-600">${meal.nutrition?.perServing?.protein || 0}g</p>
                             <p class="text-[10px] text-gray-500 font-medium">Protein</p>
                         </div>
-                         <!-- Add others if needed -->
                     </div>
                 </div>
             </div>
 
-            <!-- Footer -->
             <div class="p-6 pt-2 flex gap-3">
                 <button id="cancel-log-btn" class="flex-1 py-3 px-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-colors">Cancel</button>
                 <button id="confirm-log-btn" class="flex-1 py-3 px-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
@@ -415,7 +402,6 @@ export function openLogMealModal(meal) {
     modal.querySelector("#cancel-log-btn").onclick = closeModal;
 
     modal.querySelector("#confirm-log-btn").onclick = () => {
-   
 
         let finalNutrition = meal.nutrition?.totals || meal.nutrition || {};
 

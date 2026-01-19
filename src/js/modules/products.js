@@ -3,7 +3,6 @@ import { fetchAPI } from './api.js';
 import { getTodayDateKey } from './utils.js';
 import { logMealOrProduct } from './foodLog.js';
 
-// DOM Elements Selection (for internal use)
 function getLoading() { return document.querySelector("#app-loading-overlay"); }
 function getProductGrid() { return document.getElementById("products-grid"); }
 function getCatContainer() { return document.getElementById("product-categories"); }
@@ -64,14 +63,12 @@ export function displayProduct(res) {
                     loading="lazy"
                   />
 
-                  <!-- Nutri-Score Badge -->
                   <div
                     class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded uppercase"
                   >
                     Nutri-Score ${pro.nutritionGrade || "z"}
                   </div>
 
-                  <!-- NOVA Badge -->
                   <div
                     class="absolute top-2 right-2 bg-lime-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center"
                     title="NOVA ${pro.novaGroup || 0}"
@@ -103,7 +100,6 @@ export function displayProduct(res) {
                     >
                   </div>
 
-                  <!-- Mini Nutrition -->
                   <div class="grid grid-cols-4 gap-1 text-center">
                     <div class="bg-emerald-50 rounded p-1.5">
                       <p class="text-xs font-bold text-emerald-700">${pro.nutrients.protein}g</p>
@@ -177,10 +173,9 @@ export function getAllProductCategories() {
 }
 
 export function getByQrCode(barcodeVal) {
-
     let inputValue = barcodeVal;
     if (!inputValue) {
-        const barcodeInput = document.getElementById("barcode-inpu-t"); 
+        const barcodeInput = document.getElementById("barcode-inpu-t");
         if (barcodeInput) inputValue = barcodeInput.value;
     }
 
@@ -267,7 +262,7 @@ export function openProductModal(product) {
             protein: product.nutrients.protein,
         },
         date: getTodayDateKey(),
-        image: product.image, 
+        image: product.image,
         thumbnail: product.image
     };
 
@@ -275,7 +270,6 @@ export function openProductModal(product) {
 <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" id="product-detail-modal">
             <div class="bg-white rounded-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
                 <div class="p-6">
-                 <!-- (Modal content from original code) -->
                   <div class="flex items-start gap-6 mb-6">
                 <div class="w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0">
                     
@@ -315,7 +309,6 @@ export function openProductModal(product) {
                 </button>
             </div>
 
-             <!-- Nutrition Facts -->
             <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-5 mb-6 border border-emerald-200">
                 <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-chart-pie text-emerald-600"></i>
@@ -347,7 +340,6 @@ export function openProductModal(product) {
                 </div>
             </div>
 
-            <!-- Actions -->
             <div class="flex gap-3">
                 <button class="add-product-to-log flex-1 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 transition-all">
                     <i class="fa-solid fa-plus mr-2"></i>Log This Food

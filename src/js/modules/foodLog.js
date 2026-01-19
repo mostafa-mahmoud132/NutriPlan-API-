@@ -1,3 +1,4 @@
+
 import { getTodayDateKey, showToast, showClearLogConfirmation, navigateToSection } from './utils.js';
 import { updateNutritionBar, showSuccessModal } from './ui.js';
 
